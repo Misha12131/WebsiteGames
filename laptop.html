@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ноутбук ProBook 15 — TechnoPC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container navigation">
+        <a href="index.html" class="logo">✳ Techno<span>PC</span></a>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="index.html#categories">Категорії</a>
+            <a href="cart.html">🛒 Кошик (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container products">
+    <p style="margin-bottom: 25px;">
+        <a href="index.html#products">← Назад до товарів</a>
+    </p>
+
+    <article class="product-card">
+        <div class="product-image laptop" style="height: 280px;">
+            <span class="emoji" style="font-size: 110px;">💻</span>
+        </div>
+
+        <div style="padding: 24px;">
+            <p class="product-category">КОМП'ЮТЕРИ</p>
+            <h1 style="margin: 0 14px 12px; font-size: 30px;">
+                Ноутбук ProBook 15
+            </h1>
+
+            <p class="product-description">
+                15.6″ · SSD · Для роботи та навчання
+            </p>
+
+            <h2 style="margin: 20px 14px; color: #3264ff;">
+                24 999 ₴
+            </h2>
+
+            <section class="product-specs">
+                <h2>Характеристики</h2>
+                <p class="specs-subtitle">
+                    Основні параметри ноутбука
+                </p>
+
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-icon">💻</span>
+                        <div>
+                            <span class="spec-label">Екран</span>
+                            <span class="spec-value">15.6 дюйма</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-item">
+                        <span class="spec-icon">💾</span>
+                        <div>
+                            <span class="spec-label">Накопичувач</span>
+                            <span class="spec-value">SSD</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-item">
+                        <span class="spec-icon">⚡</span>
+                        <div>
+                            <span class="spec-label">Призначення</span>
+                            <span class="spec-value">Робота та навчання</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-item">
+                        <span class="spec-icon">📦</span>
+                        <div>
+                            <span class="spec-label">Модель</span>
+                            <span class="spec-value">ProBook 15</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <button class="button"
+                id="add-to-cart"
+                data-id="probook15"
+                data-name="Ноутбук ProBook 15"
+                data-price="24999"
+                type="button"
+                style="margin-top: 24px; cursor: pointer;">
+                Додати в кошик 🛒
+            </button>
+        </div>
+    </article>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик — TechnoPC</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cart-page {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .cart-item, .cart-summary, .empty-cart {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .cart-controls button, .clear-button {
+            padding: 9px 13px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .qty-button { background: #e5efff; color: #1764d8; }
+        .remove-button, .clear-button { background: #ffe8e8; color: #c62828; }
+        .cart-price { color: #1764d8; font-weight: bold; }
+        .cart-summary h2 { margin-top: 0; }
+        .back-link {
+            display: inline-block;
+            margin: 15px 0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container navigation">
+        <a href="index.html" class="logo">✳ Techno<span>PC</span></a>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="index.html#products">Товари</a>
+            <a href="cart.html">🛒 Кошик (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<main class="cart-page">
+    <h1>🛒 Мій кошик</h1>
+    <div id="cart-items"></div>
+
+    <section class="cart-summary" id="cart-summary" hidden>
+        <h2>Разом: <span id="cart-total">0</span> ₴</h2>
+        <button class="clear-button" id="clear-cart" type="button">
+            🗑️ Очистити кошик
+        </button>
+    </section>
+
+    <a class="back-link" href="index.html#products">
+        ← Повернутися до каталогу
+    </a>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

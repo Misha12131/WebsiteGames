@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Watch X2 — TechnoPC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="container navigation">
+        <a href="index.html" class="logo">✳ Techno<span>PC</span></a>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="index.html#categories">Категорії</a>
+            <a href="cart.html">🛒 Кошик (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container products">
+    <p><a href="index.html#products">← Назад до товарів</a></p>
+
+    <article class="product-card">
+        <div class="product-image watch">
+            <span class="emoji">⌚</span>
+        </div>
+
+        <p class="product-category">ГАДЖЕТИ</p>
+        <h1>Smart Watch X2</h1>
+        <p class="product-description">Сенсорний екран · Bluetooth</p>
+        <h2>3 299 ₴</h2>
+
+        <section class="product-specs">
+            <h2>Характеристики</h2>
+            <p class="specs-subtitle">
+                Зручний гаджет для щоденного використання
+            </p>
+
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">👆</span>
+                    <div>
+                        <span class="spec-label">Керування</span>
+                        <span class="spec-value">Сенсорний екран</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">📶</span>
+                    <div>
+                        <span class="spec-label">Підключення</span>
+                        <span class="spec-value">Bluetooth</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🔔</span>
+                    <div>
+                        <span class="spec-label">Функції</span>
+                        <span class="spec-value">Отримання сповіщень</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">⌚</span>
+                    <div>
+                        <span class="spec-label">Модель</span>
+                        <span class="spec-value">Smart Watch X2</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button class="button" id="add-to-cart"
+            data-id="watchx2"
+            data-name="Smart Watch X2"
+            data-price="3299"
+            type="button">
+            Додати в кошик 🛒
+        </button>
+    </article>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

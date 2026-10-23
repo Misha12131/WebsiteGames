@@ -1,165 +1,272 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Task Planner</title>
-
+    <title>TechnoPC — Магазин техніки</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D1MDFB4MNT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-D1MDFB4MNT');
-</script>
 </head>
-
 <body>
 
-<div class="planner">
+    <header class="header">
+        <div class="container navigation">
+            <a href="#" class="logo">✳ Techno<span>PC</span></a>
 
-    <!-- РАСТЕНИЯ СВЕРХУ -->
-    <div class="plants">
+            <nav>
+                <a href="#">Головна</a>
+                <a href="#categories">Категорії</a>
+                <a href="#products">Товари</a>
+                <a href="#about">Про нас</a>
+            </nav>
 
-        <div class="plant left">
-            <div class="stem"></div>
-
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
+            <a href="cart.html" class="cart">
+    🛒 Кошик (<span id="cart-count">0</span>)
+</a>
         </div>
+    </header>
 
-        <div class="plant center">
-            <div class="stem"></div>
+    <main>
 
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-        </div>
+        <section class="hero container">
+            <div class="hero-text">
+                <p class="small-title">ТЕХНІКА ДЛЯ ТВОГО ЖИТТЯ</p>
 
-        <div class="plant right">
-            <div class="stem"></div>
+                <h1>Менше шуму.<br>Більше можливостей.</h1>
 
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-        </div>
+                <p class="description">
+                    Від потужних комп'ютерів до корисних гаджетів.
+                    Обирай сучасну техніку для роботи, навчання та ігор.
+                </p>
 
-    </div>
-
-
-    <!-- ЗАГОЛОВОК -->
-    <h1 class="title">
-        Task Planner
-    </h1>
-
-    <div class="subtitle">
-        Організуй свій день ✨
-    </div>
-
-
-    <!-- ДОСКА -->
-    <div class="board">
-
-        <!-- ПРОГРЕСС -->
-        <div class="progress-container">
-            <div class="progress-text">
-                Прогрес: <span id="progressPercent">0%</span>
+                <a href="#products" class="button">Обрати техніку →</a>
             </div>
 
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+            <div class="hero-image">
+                <div class="headphones">🎧</div>
+                <p>TECHNOLOGY FOR EVERYDAY</p>
             </div>
+        </section>
+
+        <section class="advantages container">
+            <div>✓ Безпечна покупка</div>
+            <div>□ Швидка доставка</div>
+            <div>♧ Гарантія якості</div>
+            <div>♡ Допомога з вибором</div>
+        </section>
+
+        <section class="container categories" id="categories">
+            <div class="section-heading">
+                <div>
+                    <p class="small-title">ЗНАЙДИ СВОЄ</p>
+                    <h2>Категорії техніки</h2>
+                </div>
+            </div>
+
+            <div class="category-grid">
+                <a href="#products" class="category-card">
+                    <span>💻</span>
+                    <h3>Комп'ютери</h3>
+                    <p>Ноутбуки та ПК</p>
+                </a>
+
+                <a href="#products" class="category-card">
+                    <span>🎧</span>
+                    <h3>Аудіо</h3>
+                    <p>Навушники та колонки</p>
+                </a>
+
+                <a href="#products" class="category-card">
+                    <span>⌚</span>
+                    <h3>Гаджети</h3>
+                    <p>Розумні пристрої</p>
+                </a>
+
+                <a href="#products" class="category-card">
+                    <span>🖥️</span>
+                    <h3>Комплектуючі</h3>
+                    <p>Деталі для твого ПК</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="container products" id="products">
+            <div class="section-heading">
+                <div>
+                    <p class="small-title">ВИБІР ПОКУПЦІВ</p>
+                    <h2>Хороша техніка. Розумний вибір.</h2>
+                </div>
+
+                <a href="#products" class="all-products">Усі товари →</a>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <div class="product-image laptop">
+                        <span class="label">ПОПУЛЯРНЕ</span>
+                        <span class="emoji">💻</span>
+                    </div>
+
+                    <p class="product-category">КОМП'ЮТЕРИ</p>
+                    <h3>Ноутбук ProBook 15</h3>
+                    <p class="product-description">15.6″ · SSD · Для роботи та навчання</p>
+
+                    <div class="product-bottom">
+                        <strong>24 999 ₴</strong>
+                        <!-- Ноутбук -->
+                        <a href="laptop.html" class="buy-button">Детальніше →</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image audio">
+                        <span class="emoji">🎧</span>
+                    </div>
+
+                    <p class="product-category">АУДІО</p>
+                    <h3>Навушники SoundPro</h3>
+                    <p class="product-description">Bluetooth · Чистий звук</p>
+
+                    <div class="product-bottom">
+                        <strong>2 499 ₴</strong>
+                        <!-- Навушники -->
+                        <a href="headphones.html" class="buy-button">Детальніше →</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image speaker">
+                        <span class="label">НОВИНКА</span>
+                        <span class="emoji">🔊</span>
+                    </div>
+
+                    <p class="product-category">АКСЕСУАРИ</p>
+                    <h3>Колонка MiniBass</h3>
+                    <p class="product-description">Компактна · Бездротова</p>
+
+                    <div class="product-bottom">
+                        <strong>1 799 ₴</strong>
+                        <!-- Колонка -->
+                        <a href="speaker.html" class="buy-button">Детальніше →</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image watch">
+                        <span class="emoji">⌚</span>
+                    </div>
+
+                    <p class="product-category">ГАДЖЕТИ</p>
+                    <h3>Smart Watch X2</h3>
+                    <p class="product-description">Сенсорний екран · Bluetooth</p>
+
+                    <div class="product-bottom">
+                        <strong>3 299 ₴</strong>
+                        <!-- Смарт-годинник -->
+                        <a href="watch.html" class="buy-button">Детальніше →</a>    
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="promo container">
+            <div>
+                <p class="small-title">ТВОЄ МІСЦЕ ДЛЯ ТЕХНОЛОГІЙ</p>
+                <h2>Онови свій простір.<br>Відкрий нові можливості.</h2>
+                <p>Обирай пристрої, які допомагають досягати більшого.</p>
+                <a href="#products" class="button light-button">Переглянути каталог →</a>
+            </div>
+
+            <div class="promo-icon">🖥️</div>
+        </section>
+
+        <section class="container benefits" id="about">
+            <div class="section-heading">
+                <div>
+                    <p class="small-title">ЧОМУ TECHNOPC?</p>
+                    <h2>Техніка без зайвих турбот.</h2>
+                </div>
+            </div>
+
+            <div class="benefit-grid">
+                <div>
+                    <span>✓</span>
+                    <h3>Надійна якість</h3>
+                    <p>Техніка для щоденного використання.</p>
+                </div>
+
+                <div>
+                    <span>↗</span>
+                    <h3>Зручний вибір</h3>
+                    <p>Основні характеристики та ціни в одному місці.</p>
+                </div>
+
+                <div>
+                    <span>♡</span>
+                    <h3>Турбота про клієнта</h3>
+                    <p>Зрозуміла інформація про кожен товар.</p>
+                </div>
+
+                <div>
+                    <span>◇</span>
+                    <h3>Сучасний каталог</h3>
+                    <p>Популярні пристрої для різних потреб.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container newsletter-inner">
+                <div>
+                    <h2>Залишайся на крок попереду.</h2>
+                    <p>Слідкуй за новинками та оновленнями каталогу.</p>
+                </div>
+
+                <a href="#contacts" class="button">Наші контакти →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="contacts">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <a href="#" class="logo">✳ Techno<span>PC</span></a>
+                <p>Технології для твого життя.</p>
+                <p>Обирай розумно. Користуйся із задоволенням.</p>
+            </div>
+
+            <div>
+                <h4>Магазин</h4>
+                <a href="#products">Усі товари</a>
+                <a href="#categories">Категорії</a>
+                <a href="#about">Про нас</a>
+            </div>
+
+            <div>
+                <h4>Допомога</h4>
+                <a href="#contacts">Контакти</a>
+                <a href="#contacts">Доставка</a>
+                <a href="#contacts">Гарантія</a>
+            </div>
+
+            <div>
+                <h4>Контакти</h4>
+                <p>Україна</p>
+                <p>techno@example.com</p>
+                <p>Пн–Пт: 09:00–18:00</p>
+            </div>
+
         </div>
 
-
-        <div class="note blue">
-            <b>Stay creative</b>
-
-            <p>
-                ────────
-            </p>
+        <div class="container footer-bottom">
+            <p>© 2026 TechnoPC. Навчальний проєкт.</p>
+            <p>HTML + CSS</p>
         </div>
-
-        <div class="note pink">
-            <b>smile :)</b>
-
-            <p>
-                ♡
-            </p>
-        </div>
-
-        <div class="note yellow">
-            <b>TODAY:</b>
-
-            <p>
-                – sketch<br>
-                – water plants
-            </p>
-        </div>
-
-        <div class="note green"></div>
-
-    </div>
-
-
-    <!-- ДОБАВЛЕНИЕ ЗАДАЧИ -->
-    <div class="task-input">
-
-        <input
-            type="text"
-            id="taskInput"
-            placeholder="+ Додати завдання..."
-        >
-
-        <button id="addButton">
-            Додати
-        </button>
-
-    </div>
-
-
-    <!-- НИЖНЯЯ ПОЛКА -->
-    <div class="shelf">
-
-        <div class="books">
-            <div class="book one"></div>
-            <div class="book two"></div>
-            <div class="book three"></div>
-        </div>
-
-        <div class="pot"></div>
-
-        <div class="small-leaf"></div>
-
-        <div class="camera"></div>
-
-        <div class="triangle"></div>
-
-    </div>
-
-</div>
-
-
-<script src="script.js"></script>
-
+    </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
-```

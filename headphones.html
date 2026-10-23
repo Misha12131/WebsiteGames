@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навушники SoundPro — TechnoPC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="container navigation">
+        <a href="index.html" class="logo">✳ Techno<span>PC</span></a>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="index.html#categories">Категорії</a>
+            <a href="cart.html">🛒 Кошик (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container products">
+    <p><a href="index.html#products">← Назад до товарів</a></p>
+
+    <article class="product-card">
+        <div class="product-image audio">
+            <span class="emoji">🎧</span>
+        </div>
+
+        <p class="product-category">АУДІО</p>
+        <h1>Навушники SoundPro</h1>
+        <p class="product-description">Bluetooth · Чистий звук</p>
+        <h2>2 499 ₴</h2>
+
+        <section class="product-specs">
+            <h2>Характеристики</h2>
+            <p class="specs-subtitle">
+                Усе необхідне для музики, навчання та відпочинку
+            </p>
+
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">📶</span>
+                    <div>
+                        <span class="spec-label">Підключення</span>
+                        <span class="spec-value">Bluetooth</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🎧</span>
+                    <div>
+                        <span class="spec-label">Тип</span>
+                        <span class="spec-value">Бездротові навушники</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🔊</span>
+                    <div>
+                        <span class="spec-label">Звучання</span>
+                        <span class="spec-value">Чистий звук</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🎵</span>
+                    <div>
+                        <span class="spec-label">Призначення</span>
+                        <span class="spec-value">Музика, навчання та відпочинок</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button class="button" id="add-to-cart"
+            data-id="soundpro"
+            data-name="Навушники SoundPro"
+            data-price="2499"
+            type="button">
+            Додати в кошик 🛒
+        </button>
+    </article>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

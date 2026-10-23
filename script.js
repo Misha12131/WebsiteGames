@@ -1,400 +1,195 @@
-/* =====================================================
-   ЦВЕТА НОВЫХ ЗАПИСОК
-===================================================== */
 
-const noteColors = [
-    { background: "#f1d6a8", color: "#665b4d" },
-    { background: "#a9c3d4", color: "#ffffff" },
-    { background: "#e5a18c", color: "#ffffff" },
-    { background: "#b8c9b7", color: "#ffffff" },
-    { background: "#d6b4c7", color: "#ffffff" },
-    { background: "#c8b9d9", color: "#ffffff" },
-    { background: "#e4c98e", color: "#665b4d" },
-    { background: "#b7c8d9", color: "#ffffff" }
-];
+document.addEventListener("DOMContentLoaded", function () {
+    const cartKey = "technopc-cart";
 
+    let cart = [];
 
-/* =====================================================
-   ДОБАВЛЕНИЕ ЗАДАЧИ
-===================================================== */
-
-function addTask() {
-
-    const input = document.getElementById("taskInput");
-    const taskText = input.value.trim();
-
-    if (taskText === "") {
-        return;
+    try {
+        const savedCart = JSON.parse(localStorage.getItem(cartKey) || "[]");
+        if (Array.isArray(savedCart)) cart = savedCart;
+    } catch {
+        cart = [];
     }
 
-    const board = document.querySelector(".board");
-    const note = document.createElement("div");
+    const count = document.getElementById("cart-count");
+    const addButton = document.getElementById("add-to-cart");
+    const itemsContainer = document.getElementById("cart-items");
+    const totalElement = document.getElementById("cart-total");
+    const summary = document.getElementById("cart-summary");
+    const clearButton = document.getElementById("clear-cart");
 
-    note.className = "note new-note";
-
-
-    /* СЛУЧАЙНЫЙ ЦВЕТ */
-
-    const randomColor =
-        noteColors[
-            Math.floor(
-                Math.random() * noteColors.length
-            )
-        ];
-
-    note.style.background = randomColor.background;
-    note.style.color = randomColor.color;
-
-
-    /* ТЕКСТ */
-
-    note.innerHTML = `
-        <b>ЗАДАЧА:</b>
-
-        <p>${taskText}</p>
-
-        <button class="complete-note">
-            ✓ Виконано
-        </button>
-
-        <button class="delete-note">
-            ×
-        </button>
-    `;
-
-
-    /* СЛУЧАЙНАЯ ПОЗИЦИЯ */
-
-    const maxX = board.clientWidth - 140;
-    const maxY = board.clientHeight - 120;
-
-    const x = Math.random() * Math.max(maxX, 0);
-    const y = Math.random() * Math.max(maxY, 0);
-
-    note.style.left = x + "px";
-    note.style.top = y + "px";
-
-
-    /* СЛУЧАЙНЫЙ НАКЛОН */
-
-    const rotation =
-        Math.random() * 10 - 5;
-
-    note.style.transform =
-        `rotate(${rotation}deg)`;
-
-
-    board.appendChild(note);
-
-
-    /* =================================================
-       УДАЛЕНИЕ
-    ================================================= */
-
-    const deleteButton =
-        note.querySelector(".delete-note");
-
-    
-   deleteButton.addEventListener("click", function(event) {
-    event.stopPropagation();
-
-    note.remove();
-
-    updateProgress();
-
-    if (typeof gtag === "function") {
-        gtag("event", "delete_task_btn");
+    function saveCart() {
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+        updateCount();
+        renderCart();
     }
-});
 
+    function updateCount() {
+        if (!count) return;
 
+        const totalQuantity = cart.reduce(
+            (sum, item) => sum + (Number(item.quantity) || 0),
+            0
+        );
 
-    /* =================================================
-       ВЫПОЛНЕНО
-    ================================================= */
+        count.textContent = totalQuantity;
+    }
 
-    const completeButton =
-        note.querySelector(".complete-note");
+    // Додавання поточного товару
+    if (addButton) {
+        addButton.addEventListener("click", function () {
+            const id = addButton.dataset.id || "rtx4070super";
+            const name = addButton.dataset.name || "GeForce RTX 4070 SUPER";
+            const price = Number(addButton.dataset.price) || 27999;
 
-    completeButton.addEventListener(
-        "click",
-        function(event) {
+            const existing = cart.find(item => item.id === id);
 
-            event.stopPropagation();
-
-            note.classList.toggle("completed");
-
-            if (
-                note.classList.contains("completed")
-            ) {
-
-                completeButton.textContent =
-                    "↩ Скасувати";
-
+            if (existing) {
+                existing.quantity = (Number(existing.quantity) || 0) + 1;
             } else {
-
-                completeButton.textContent =
-                    "✓ Виконано";
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
             }
 
-            updateProgress();
-        }
-    );
+            saveCart();
 
+            const originalText = addButton.textContent;
+            addButton.textContent = "✓ Додано в кошик!";
 
-    /* ПЕРЕТАСКИВАНИЕ */
-
-    makeDraggable(note);
-
-
-    /* ОЧИСТКА */
-
-    input.value = "";
-    input.focus();
-
-
-    /* ПРОГРЕСС */
-
-    updateProgress();
-}
-
-
-/* =====================================================
-   ПРОГРЕСС
-===================================================== */
-
-function updateProgress() {
-
-    const tasks =
-        document.querySelectorAll(".new-note");
-
-    const completed =
-        document.querySelectorAll(
-            ".new-note.completed"
-        );
-
-    const total = tasks.length;
-    const done = completed.length;
-
-    let percent = 0;
-
-    if (total > 0) {
-        percent =
-            Math.round(
-                (done / total) * 100
-            );
+            // Повертаємо початковий напис через короткий час
+            setTimeout(() => {
+                addButton.textContent = originalText;
+            }, 1500);
+        });
     }
 
+    // Відображення вмісту кошика
+    function renderCart() {
+        if (!itemsContainer) return;
 
-    /* ПРОЦЕНТ */
+        itemsContainer.innerHTML = "";
 
-    const percentElement =
-        document.getElementById(
-            "progressPercent"
-        );
+        if (cart.length === 0) {
+            itemsContainer.innerHTML = `
+                <div class="empty-cart">
+                    <h2>Твій кошик поки порожній 😢</h2>
+                    <p>Знайди щось круте в нашому каталозі!</p>
+                </div>
+            `;
 
-    if (percentElement) {
-        percentElement.textContent =
-            percent + "%";
-    }
-
-
-    /* ПОЛОСКА */
-
-    const progressFill =
-        document.getElementById(
-            "progressFill"
-        );
-
-    if (progressFill) {
-        progressFill.style.width =
-            percent + "%";
-    }
-}
-
-
-/* =====================================================
-   ПЕРЕТАСКИВАНИЕ
-===================================================== */
-
-function makeDraggable(note) {
-
-    let isDragging = false;
-
-    let offsetX = 0;
-    let offsetY = 0;
-
-
-    note.addEventListener(
-        "mousedown",
-        startDrag
-    );
-
-
-    function startDrag(event) {
-
-        if (
-            event.target.classList.contains(
-                "delete-note"
-            ) ||
-            event.target.classList.contains(
-                "complete-note"
-            )
-        ) {
+            if (summary) summary.hidden = true;
+            if (totalElement) totalElement.textContent = "0";
             return;
         }
 
-        isDragging = true;
+        if (summary) summary.hidden = false;
 
-        const noteRect =
-            note.getBoundingClientRect();
+        cart.forEach(item => {
+            const quantity = Math.max(1, Number(item.quantity) || 1);
+            const price = Math.max(0, Number(item.price) || 0);
 
-        offsetX =
-            event.clientX -
-            noteRect.left;
+            const article = document.createElement("article");
+            article.className = "cart-item";
 
-        offsetY =
-            event.clientY -
-            noteRect.top;
+            const info = document.createElement("div");
 
-        note.style.zIndex = 100;
-        note.style.cursor = "grabbing";
+            const title = document.createElement("h3");
+            title.textContent = item.name;
 
-        document.addEventListener(
-            "mousemove",
-            drag
+            const unitPrice = document.createElement("p");
+            unitPrice.textContent =
+                "Ціна: " + price.toLocaleString("uk-UA") + " ₴";
+
+            const subtotal = document.createElement("p");
+            subtotal.className = "cart-price";
+            subtotal.textContent =
+                "Сума: " +
+                (price * quantity).toLocaleString("uk-UA") + " ₴";
+
+            info.append(title, unitPrice, subtotal);
+
+            const controls = document.createElement("div");
+            controls.className = "cart-controls";
+
+            const minus = document.createElement("button");
+            minus.className = "qty-button";
+            minus.textContent = "−";
+            minus.type = "button";
+            minus.setAttribute("aria-label", "Зменшити кількість");
+
+            const qty = document.createElement("span");
+            qty.textContent = quantity;
+
+            const plus = document.createElement("button");
+            plus.className = "qty-button";
+            plus.textContent = "+";
+            plus.type = "button";
+            plus.setAttribute("aria-label", "Збільшити кількість");
+
+            const remove = document.createElement("button");
+            remove.className = "remove-button";
+            remove.textContent = "🗑️ Видалити";
+            remove.type = "button";
+
+            minus.addEventListener("click", function () {
+                const current = cart.find(product => product.id === item.id);
+                if (!current) return;
+
+                current.quantity--;
+
+                if (current.quantity <= 0) {
+                    cart = cart.filter(product => product.id !== item.id);
+                }
+
+                saveCart();
+            });
+
+            plus.addEventListener("click", function () {
+                const current = cart.find(product => product.id === item.id);
+                if (!current) return;
+
+                current.quantity++;
+                saveCart();
+            });
+
+            remove.addEventListener("click", function () {
+                cart = cart.filter(product => product.id !== item.id);
+                saveCart();
+            });
+
+            controls.append(minus, qty, plus, remove);
+            article.append(info, controls);
+            itemsContainer.appendChild(article);
+        });
+
+        const total = cart.reduce(
+            (sum, item) =>
+                sum + (Number(item.price) || 0) *
+                (Number(item.quantity) || 0),
+            0
         );
 
-        document.addEventListener(
-            "mouseup",
-            stopDrag
-        );
+        if (totalElement) {
+            totalElement.textContent = total.toLocaleString("uk-UA");
+        }
     }
 
+    // Повне очищення кошика
+    if (clearButton) {
+        clearButton.addEventListener("click", function () {
+            if (cart.length === 0) return;
 
-    function drag(event) {
-
-        if (!isDragging) {
-            return;
-        }
-
-        const board =
-            note.parentElement;
-
-        const boardRect =
-            board.getBoundingClientRect();
-
-        let x =
-            event.clientX -
-            boardRect.left -
-            offsetX;
-
-        let y =
-            event.clientY -
-            boardRect.top -
-            offsetY;
-
-        const maxX =
-            board.clientWidth -
-            note.offsetWidth;
-
-        const maxY =
-            board.clientHeight -
-            note.offsetHeight;
-
-        x = Math.max(
-            0,
-            Math.min(x, maxX)
-        );
-
-        y = Math.max(
-            0,
-            Math.min(y, maxY)
-        );
-
-        note.style.left =
-            x + "px";
-
-        note.style.top =
-            y + "px";
-
-        note.style.transform =
-            "rotate(0deg)";
-    }
-
-
-    function stopDrag() {
-
-        if (!isDragging) {
-            return;
-        }
-
-        isDragging = false;
-
-        note.style.cursor = "grab";
-
-        document.removeEventListener(
-            "mousemove",
-            drag
-        );
-
-        document.removeEventListener(
-            "mouseup",
-            stopDrag
-        );
-    }
-}
-
-
-/* =====================================================
-   КНОПКА ДОБАВИТЬ
-===================================================== */
-
-
-document
-    .getElementById("addButton")
-    .addEventListener("click", function() {
-        addTask();
-
-        if (typeof gtag === "function") {
-            gtag("event", "add_task_btn");
-        }
-    });
-
-
-/* =====================================================
-   ENTER
-===================================================== */
-
-document
-    .getElementById("taskInput")
-    .addEventListener(
-        "keydown",
-        function(event) {
-
-            if (event.key === "Enter") {
-                addTask();
+            if (confirm("Точно очистити весь кошик?")) {
+                cart = [];
+                saveCart();
             }
+        });
+    }
 
-        }
-    );
-
-
-/* =====================================================
-   СТАРЫЕ ЗАПИСКИ
-===================================================== */
-
-document
-    .querySelectorAll(".note")
-    .forEach(function(note) {
-
-        makeDraggable(note);
-
-    });
-
-
-/* =====================================================
-   НАЧАЛЬНЫЙ ПРОГРЕСС
-===================================================== */
-
-updateProgress();
+    updateCount();
+    renderCart();
+});

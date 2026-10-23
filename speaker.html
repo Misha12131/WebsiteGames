@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колонка MiniBass — TechnoPC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="container navigation">
+        <a href="index.html" class="logo">✳ Techno<span>PC</span></a>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="index.html#categories">Категорії</a>
+            <a href="cart.html">🛒 Кошик (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container products">
+    <p><a href="index.html#products">← Назад до товарів</a></p>
+
+    <article class="product-card">
+        <div class="product-image speaker">
+            <span class="emoji">🔊</span>
+        </div>
+
+        <p class="product-category">АКСЕСУАРИ</p>
+        <h1>Колонка MiniBass</h1>
+        <p class="product-description">Компактна · Бездротова</p>
+        <h2>1 799 ₴</h2>
+
+        <section class="product-specs">
+            <h2>Характеристики</h2>
+            <p class="specs-subtitle">
+                Компактний звук для музики вдома та в дорозі
+            </p>
+
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">📶</span>
+                    <div>
+                        <span class="spec-label">Підключення</span>
+                        <span class="spec-value">Бездротове</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🔊</span>
+                    <div>
+                        <span class="spec-label">Формат</span>
+                        <span class="spec-value">Портативна колонка</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🎵</span>
+                    <div>
+                        <span class="spec-label">Призначення</span>
+                        <span class="spec-value">Прослуховування музики</span>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <span class="spec-icon">🎒</span>
+                    <div>
+                        <span class="spec-label">Особливість</span>
+                        <span class="spec-value">Компактний розмір</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button class="button" id="add-to-cart"
+            data-id="minibass"
+            data-name="Колонка MiniBass"
+            data-price="1799"
+            type="button">
+            Додати в кошик 🛒
+        </button>
+    </article>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
