@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кошик — TechnoPC</title>
     <link rel="stylesheet" href="style.css">
+
     <style>
         .cart-page {
             max-width: 950px;
             margin: 40px auto;
             padding: 20px;
         }
-        .cart-item, .cart-summary, .empty-cart {
+
+        .cart-item, .cart-summary, .empty-cart,
+        .checkout-form, .checkout-success {
             background: white;
             border-radius: 14px;
             padding: 20px;
             margin: 15px 0;
             box-shadow: 0 3px 12px #0000000d;
         }
+
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -26,33 +30,113 @@
             gap: 18px;
             flex-wrap: wrap;
         }
+
         .cart-controls {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
+
         .cart-controls button, .clear-button {
             padding: 9px 13px;
             border: 0;
             border-radius: 8px;
             cursor: pointer;
         }
-        .qty-button { background: #e5efff; color: #1764d8; }
-        .remove-button, .clear-button { background: #ffe8e8; color: #c62828; }
-        .cart-price { color: #1764d8; font-weight: bold; }
-        .cart-summary h2 { margin-top: 0; }
+
+        .qty-button {
+            background: #e5efff;
+            color: #1764d8;
+        }
+
+        .remove-button, .clear-button {
+            background: #ffe8e8;
+            color: #c62828;
+        }
+
+        .cart-price {
+            color: #1764d8;
+            font-weight: bold;
+        }
+
+        .cart-summary h2 {
+            margin-top: 0;
+        }
+
         .back-link {
             display: inline-block;
             margin: 15px 0;
             text-decoration: none;
         }
+
+        .checkout-form {
+            margin-top: 25px;
+        }
+
+        .checkout-form h2 {
+            margin-top: 0;
+        }
+
+        .checkout-form label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: bold;
+        }
+
+        .checkout-form input,
+        .checkout-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #d5dbea;
+            border-radius: 9px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .checkout-form textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+
+        .checkout-button {
+            margin-top: 20px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 9px;
+            background: #3264ff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .checkout-button:hover {
+            background: #2452df;
+        }
+
+        .checkout-success {
+            border: 1px solid #b7e5c4;
+            background: #f0fff4;
+        }
+
+        .checkout-success h2 {
+            color: #218344;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
     </style>
 </head>
+
 <body>
+
 <header class="header">
     <div class="container navigation">
         <a href="index.html" class="logo">✳ Techno<span>PC</span></a>
+
         <nav>
             <a href="index.html">Головна</a>
             <a href="index.html#products">Товари</a>
@@ -62,21 +146,70 @@
 </header>
 
 <main class="cart-page">
+
     <h1>🛒 Мій кошик</h1>
+
     <div id="cart-items"></div>
 
     <section class="cart-summary" id="cart-summary" hidden>
+
         <h2>Разом: <span id="cart-total">0</span> ₴</h2>
+
         <button class="clear-button" id="clear-cart" type="button">
             🗑️ Очистити кошик
         </button>
+
+        <form class="checkout-form" id="checkout-form">
+
+            <h2>Оформлення замовлення</h2>
+            <p>Заповни свої контактні дані для оформлення замовлення.</p>
+
+            <label for="customer-name">Ім'я та прізвище</label>
+            <input
+                type="text"
+                id="customer-name"
+                placeholder="Наприклад, Іван Петренко"
+                required
+                minlength="2"
+                maxlength="60"
+            >
+
+            <label for="customer-phone">Номер телефону</label>
+            <input
+                type="tel"
+                id="customer-phone"
+                placeholder="+380 XX XXX XX XX"
+                required
+                minlength="9"
+                maxlength="20"
+            >
+
+            <label for="customer-address">Адреса доставки</label>
+            <textarea
+                id="customer-address"
+                placeholder="Місто, вулиця, будинок"
+                required
+                minlength="5"
+                maxlength="200"
+            ></textarea>
+
+            <button class="checkout-button" type="submit">
+                Підтвердити замовлення →
+            </button>
+
+        </form>
+
     </section>
+
+    <div class="checkout-success" id="checkout-message" hidden></div>
 
     <a class="back-link" href="index.html#products">
         ← Повернутися до каталогу
     </a>
+
 </main>
 
 <script src="script.js"></script>
+
 </body>
 </html>
