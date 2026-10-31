@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalElement = document.getElementById("cart-total");
     const summary = document.getElementById("cart-summary");
     const clearButton = document.getElementById("clear-cart");
+    const checkoutForm = document.getElementById("checkout-form");
+    const checkoutMessage = document.getElementById("checkout-message");
 
     function saveCart() {
         localStorage.setItem(cartKey, JSON.stringify(cart));
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         count.textContent = totalQuantity;
     }
 
-    // Додавання поточного товару
+    // Додавання товару в кошик
     if (addButton) {
         addButton.addEventListener("click", function () {
             const id = addButton.dataset.id || "rtx4070super";
@@ -60,14 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const originalText = addButton.textContent;
             addButton.textContent = "✓ Додано в кошик!";
 
-            // Повертаємо початковий напис через короткий час
             setTimeout(() => {
                 addButton.textContent = originalText;
             }, 1500);
         });
     }
 
-    // Відображення вмісту кошика
+    // Відображення кошика
     function renderCart() {
         if (!itemsContainer) return;
 
@@ -178,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Повне очищення кошика
+    // Очищення кошика
     if (clearButton) {
         clearButton.addEventListener("click", function () {
             if (cart.length === 0) return;
@@ -187,6 +188,76 @@ document.addEventListener("DOMContentLoaded", function () {
                 cart = [];
                 saveCart();
             }
+        });
+    }
+
+    // Оформлення замовлення
+    if (checkoutForm) {
+        checkoutForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                alert("Твій кошик порожній!");
+                return;
+            }
+
+            if (!checkoutForm.reportValidity()) return;
+
+            const customerName =
+                document.getElementById("customer-name").value.trim();
+
+            const customerPhone =
+                document.getElementById("customer-phone").value.trim();
+
+            const customerAddress =
+                document.getElementById("customer-address").value.trim();
+
+            const total = cart.reduce(
+                (sum, item) =>
+                    sum + Number(item.price) * Number(item.quantity),
+                0
+            );
+
+            const orderNumber = Date.now().toString().slice(-8);
+
+            // Демонстраційне підтвердження замовлення
+            const order = {
+                number: orderNumber,
+                customer: customerName,
+                phone: customerPhone,
+                address: customerAddress,
+                items: cart,
+                total: total,
+                date: new Date().toLocaleString("uk-UA")
+            };
+
+            // Зберігаємо демонстраційне замовлення в браузері
+            const orders = JSON.parse(
+                localStorage.getItem("technopc-orders") || "[]"
+            );
+
+            orders.push(order);
+            localStorage.setItem("technopc-orders", JSON.stringify(orders));
+
+            if (checkoutMessage) {
+                checkoutMessage.hidden = false;
+                checkoutMessage.innerHTML = `
+                    <h2>✓ Замовлення оформлено!</h2>
+                    <p>Дякуємо, ${customerName}!</p>
+                    <p>Номер замовлення: <strong>#${orderNumber}</strong></p>
+                    <p>Сума: <strong>${total.toLocaleString("uk-UA")} ₴</strong></p>
+                    <p>Це демонстраційне замовлення — магазин не отримав твої дані.</p>
+                `;
+            }
+
+            cart = [];
+            localStorage.removeItem(cartKey);
+            updateCount();
+            renderCart();
+            checkoutForm.reset();
+            checkoutForm.hidden = true;
+
+            if (clearButton) clearButton.disabled = true;
         });
     }
 
