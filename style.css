@@ -1125,3 +1125,101 @@ nav a:hover {
         font-size: 21px;
     }
 }
+
+
+/* ===== ИСПРАВЛЕННОЕ ОТОБРАЖЕНИЕ ИЗОБРАЖЕНИЙ ===== */
+
+/* Общие блоки изображений */
+.product-image {
+    width: 100%;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 12px;
+}
+
+/* Изображения товаров и категорий */
+.product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Категории */
+.category-card .product-image {
+    height: 150px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+/* Дополнительный фон комплектующих */
+.components {
+    background-color: #e5eaf0;
+}
+
+/* Главное изображение в баннере */
+.hero-image {
+    padding: 20px;
+}
+
+.hero-image .headphones {
+    width: 80%;
+    max-width: 420px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image .headphones img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Изображение в рекламном блоке */
+.promo-icon {
+    width: 40%;
+    height: 210px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promo-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Телефоны */
+@media (max-width: 600px) {
+    .product-image {
+        height: 135px;
+    }
+
+    .category-card .product-image {
+        height: 135px;
+    }
+
+    .hero-image .headphones {
+        width: 90%;
+        height: 160px;
+    }
+
+    .promo-icon {
+        display: none;
+    }
+}
